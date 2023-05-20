@@ -1,6 +1,7 @@
-function App() {
+import Header from "./components/Header";
 
-  return <h1>Countries Project</h1>;
+function App() {
+  return <Header />;
 }
 
-export default App
+export default App;
