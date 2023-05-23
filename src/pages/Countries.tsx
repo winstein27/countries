@@ -1,5 +1,7 @@
+import CountriesList from "../components/countries/CountriesList";
+
 const Countries = () => {
-  return <h1>Countries</h1>;
+  return <CountriesList />;
 };
 
 export default Countries;
