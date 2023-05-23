@@ -1,0 +1,27 @@
+.card {
+  width: 80%;
+  margin: auto;
+  margin-top: 2rem;
+  border-radius: 6px;
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.flag {
+  width: 100%;
+}
+
+.info {
+  width: 100%;
+  padding: 0 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.info h2 {
+  font-size: 1.3rem;
+}
+
+.info p {
+  margin: 0.5rem 0;
+}
