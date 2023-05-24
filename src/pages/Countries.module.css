@@ -30,3 +30,21 @@
   border-radius: 6px;
   margin-top: 2rem;
 }
+
+@media (min-width: 600px) {
+  .filters {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .filters input {
+    width: 50%;
+    max-width: 500px;
+    margin: 0;
+  }
+
+  .filters select {
+    margin: 0;
+  }
+}
