@@ -5,6 +5,22 @@ import Country from "./types/Country";
 
 import styles from "./CountriesList.module.css";
 
+interface Props {
+  searchFilter: string;
+}
+
+const filterCountriesByText = (countries: any, text: string) => {
+  const filterText = text.toLowerCase();
+  return countries.filter(
+    (country) =>
+      country.name.common.toLowerCase().includes(filterText) ||
+      country.region.toLowerCase().includes(filterText) ||
+      (country.capital
+        ? country.capital[0].toLowerCase().includes(filterText)
+        : false)
+  );
+};
+
 const createCountry = (data: any) => {
   const country = {} as Country;
 
@@ -17,14 +33,20 @@ const createCountry = (data: any) => {
   return country;
 };
 
-const CountriesList = () => {
+const CountriesList = (props: Props) => {
   const { data, isLoading, error } = useFetch({ url: "/all" });
 
   if (isLoading) return <h2>Countries List</h2>;
 
+  if (error || !data) return <h2>Something went wrong</h2>;
+
+  const countriesList = props.searchFilter
+    ? filterCountriesByText(data, props.searchFilter)
+    : (data as Array<any>);
+
   return (
     <ul className={styles.list}>
-      {data.map((country, index) => (
+      {countriesList.map((country, index) => (
         <li key={index}>
           <CountryCard country={createCountry(country)} />
         </li>
