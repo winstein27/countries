@@ -7,6 +7,7 @@ import styles from "./CountriesList.module.css";
 
 interface Props {
   searchFilter: string;
+  regionFilter: string;
 }
 
 const filterCountriesByText = (countries: any, text: string) => {
@@ -40,9 +41,16 @@ const CountriesList = (props: Props) => {
 
   if (error || !data) return <h2>Something went wrong</h2>;
 
-  const countriesList = props.searchFilter
+  let countriesList = props.searchFilter
     ? filterCountriesByText(data, props.searchFilter)
     : (data as Array<any>);
+
+  countriesList = props.regionFilter
+    ? countriesList.filter(
+        (country) =>
+          country.region.toLowerCase() === props.regionFilter.toLowerCase()
+      )
+    : countriesList;
 
   return (
     <ul className={styles.list}>

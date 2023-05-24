@@ -7,6 +7,7 @@ import CountriesList from "../components/countries/CountriesList";
 
 const Countries = () => {
   const [search, setSearch] = useState("");
+  const [region, setRegion] = useState("");
 
   return (
     <>
@@ -19,8 +20,20 @@ const Countries = () => {
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search for a country..."
         />
+        <select
+          name="region"
+          value={region}
+          onChange={(e) => setRegion(e.target.value)}
+        >
+          <option value="">Filter by Region</option>
+          <option value="Africa">Africa</option>
+          <option value="America">America</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Oceania</option>
+        </select>
       </div>
-      <CountriesList searchFilter={search} />
+      <CountriesList searchFilter={search} regionFilter={region} />
     </>
   );
 };
