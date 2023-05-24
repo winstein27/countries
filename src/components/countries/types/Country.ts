@@ -1,4 +1,5 @@
 interface Country {
+  officialName: string;
   flag: { alt: string; url: string };
   name: string;
   population: number;

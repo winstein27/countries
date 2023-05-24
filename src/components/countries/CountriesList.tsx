@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 import useFetch from "../../hooks/useFetch";
+
 import CountryCard from "./CountryCard";
 
 import Country from "./types/Country";
@@ -25,6 +28,7 @@ const filterCountriesByText = (countries: any, text: string) => {
 const createCountry = (data: any) => {
   const country = {} as Country;
 
+  country.officialName = data.name.official;
   country.flag = { alt: data.flags.alt, url: data.flags.png };
   country.name = data.name.common;
   country.population = data.population;
@@ -36,6 +40,7 @@ const createCountry = (data: any) => {
 
 const CountriesList = (props: Props) => {
   const { data, isLoading, error } = useFetch({ url: "/all" });
+  const navigate = useNavigate();
 
   if (isLoading) return <h2>Countries List</h2>;
 
@@ -52,11 +57,18 @@ const CountriesList = (props: Props) => {
       )
     : countriesList;
 
+  const onClickHandler = (officialName: string) => {
+    navigate("/detail?name=" + officialName);
+  };
+
   return (
     <ul className={styles.list}>
       {countriesList.map((country, index) => (
         <li key={index}>
-          <CountryCard country={createCountry(country)} />
+          <CountryCard
+            country={createCountry(country)}
+            onClick={onClickHandler}
+          />
         </li>
       ))}
     </ul>

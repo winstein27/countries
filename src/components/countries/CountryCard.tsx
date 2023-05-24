@@ -4,11 +4,12 @@ import styles from "./CountryCard.module.css";
 
 interface Props {
   country: Country;
+  onClick: (officialName: string) => void;
 }
 
-const CountryCard = ({ country }: Props) => {
+const CountryCard = ({ country, onClick }: Props) => {
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={() => onClick(country.officialName)}>
       <img
         src={country.flag.url}
         alt={country.flag.alt}
