@@ -8,7 +8,7 @@ interface Country {
   flag: { alt: string; url: string };
   domain: string[];
   currencies: string[];
-  languages: string;
+  languages: string[];
   borderCountries: string;
 }
 

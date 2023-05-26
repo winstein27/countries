@@ -40,10 +40,10 @@ const CountryInfo = ({ country }: Props) => {
           <b>Top Level Domain:</b> {country.domain}
         </p>
         <p>
-          <b>Currencies:</b> {country.currencies}
+          <b>Currencies:</b> {country.currencies.join(", ")}
         </p>
         <p>
-          <b>Languages:</b> {country.languages}
+          <b>Languages:</b> {country.languages.join(", ")}
         </p>
       </div>
 

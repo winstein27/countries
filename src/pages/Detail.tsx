@@ -26,7 +26,7 @@ const prepareCountry = (data: any) => {
   country.domain = data.tld;
 
   country.currencies = Object.values(data.currencies).reduce(
-    (prev, current) => {
+    (prev: string[], current) => {
       prev.push(current.name);
       return prev;
     },
