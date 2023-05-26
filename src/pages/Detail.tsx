@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, Link } from "react-router-dom";
 
 import useFetch from "../hooks/useFetch";
 
@@ -50,7 +50,12 @@ const Detail = () => {
   console.log(data[0]);
   console.log(prepareCountry(data[0]));
 
-  return <h1>Country detail: {name}</h1>;
+  return (
+    <>
+      <Link to="/">Back</Link>
+      <h1>Country detail: {name}</h1>;
+    </>
+  );
 };
 
 export default Detail;
