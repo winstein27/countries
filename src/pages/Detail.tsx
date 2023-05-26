@@ -6,8 +6,8 @@ import styles from "./Detail.module.css";
 
 import useFetch from "../hooks/useFetch";
 
-import CountryComplete from "../components/types/CountryComplete";
-import ResponseCountry from "../components/types/ResponseCountry";
+import CountryComplete from "../types/CountryComplete";
+import ResponseCountry from "../types/ResponseCountry";
 
 import CountryInfo from "../components/detail/CountryInfo";
 

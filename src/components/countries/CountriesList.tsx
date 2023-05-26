@@ -4,8 +4,8 @@ import useFetch from "../../hooks/useFetch";
 
 import CountryCard from "./CountryCard";
 
-import CountryBasic from "../types/CountryBasic";
-import ResponseCountry from "../types/ResponseCountry";
+import CountryBasic from "../../types/CountryBasic";
+import ResponseCountry from "../../types/ResponseCountry";
 
 import styles from "./CountriesList.module.css";
 

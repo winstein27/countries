@@ -1,4 +1,4 @@
-import CountryComplete from "../types/CountryComplete";
+import CountryComplete from "../../types/CountryComplete";
 
 import styles from "./CountryInfo.module.css";
 

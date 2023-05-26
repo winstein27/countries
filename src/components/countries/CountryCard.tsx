@@ -1,4 +1,4 @@
-import CountryBasic from "../types/CountryBasic";
+import CountryBasic from "../../types/CountryBasic";
 
 import styles from "./CountryCard.module.css";
 
