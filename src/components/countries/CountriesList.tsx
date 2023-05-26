@@ -4,7 +4,8 @@ import useFetch from "../../hooks/useFetch";
 
 import CountryCard from "./CountryCard";
 
-import Country from "./types/Country";
+import CountryBasic from "../types/CountryBasic";
+import ResponseCountry from "../types/ResponseCountry";
 
 import styles from "./CountriesList.module.css";
 
@@ -13,7 +14,7 @@ interface Props {
   regionFilter: string;
 }
 
-const filterCountriesByText = (countries: any, text: string) => {
+const filterCountriesByText = (countries: ResponseCountry[], text: string) => {
   const filterText = text.toLowerCase();
   return countries.filter(
     (country) =>
@@ -25,8 +26,8 @@ const filterCountriesByText = (countries: any, text: string) => {
   );
 };
 
-const createCountry = (data: any) => {
-  const country = {} as Country;
+const createCountry = (data: ResponseCountry) => {
+  const country = {} as CountryBasic;
 
   country.officialName = data.name.official;
   country.flag = { alt: data.flags.alt, url: data.flags.png };
@@ -39,7 +40,9 @@ const createCountry = (data: any) => {
 };
 
 const CountriesList = (props: Props) => {
-  const { data, isLoading, error } = useFetch({ url: "/all" });
+  const { data, isLoading, error } = useFetch<ResponseCountry[]>({
+    url: "/all",
+  });
   const navigate = useNavigate();
 
   if (isLoading) return <h2>Countries List</h2>;
@@ -48,7 +51,7 @@ const CountriesList = (props: Props) => {
 
   let countriesList = props.searchFilter
     ? filterCountriesByText(data, props.searchFilter)
-    : (data as Array<any>);
+    : data;
 
   countriesList = props.regionFilter
     ? countriesList.filter(

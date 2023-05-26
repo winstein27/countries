@@ -1,9 +1,9 @@
-import Country from "./types/Country";
+import CountryBasic from "../types/CountryBasic";
 
 import styles from "./CountryCard.module.css";
 
 interface Props {
-  country: Country;
+  country: CountryBasic;
   onClick: (officialName: string) => void;
 }
 

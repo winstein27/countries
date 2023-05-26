@@ -6,12 +6,13 @@ import styles from "./Detail.module.css";
 
 import useFetch from "../hooks/useFetch";
 
-import Country from "../components/detail/types/Country";
+import CountryComplete from "../components/types/CountryComplete";
+import ResponseCountry from "../components/types/ResponseCountry";
 
 import CountryInfo from "../components/detail/CountryInfo";
 
-const prepareCountry = (data: any) => {
-  const country = {} as Country;
+const prepareCountry = (data: ResponseCountry) => {
+  const country = {} as CountryComplete;
 
   country.name = data.name.common;
 
@@ -34,7 +35,7 @@ const prepareCountry = (data: any) => {
   );
 
   country.languages = Object.values(data.languages);
-  country.borderCountries = data.borders;
+  country.borderCountries = data.borders || [];
 
   return country;
 };
@@ -49,7 +50,7 @@ const Detail = () => {
     if (!name) navigate("/");
   }, []);
 
-  const { data, isLoading, error } = useFetch({
+  const { data, isLoading, error } = useFetch<ResponseCountry[]>({
     url: `name/${name}?fullText=true`,
   });
 

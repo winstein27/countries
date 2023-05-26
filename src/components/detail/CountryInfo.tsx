@@ -1,9 +1,9 @@
-import Country from "./types/Country";
+import CountryComplete from "../types/CountryComplete";
 
 import styles from "./CountryInfo.module.css";
 
 interface Props {
-  country: Country;
+  country: CountryComplete;
 }
 
 const CountryInfo = ({ country }: Props) => {
