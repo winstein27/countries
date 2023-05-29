@@ -9,9 +9,33 @@
 
 .flag {
   width: 100%;
-  max-height: 220px;
+}
+
+.flag img {
+  width: 100%;
 }
 
 .infoGroup {
   margin: 2.5rem 0;
+}
+
+@media (min-width: 600px) {
+  .flag {
+    display: inline-block;
+    width: 49%;
+    vertical-align: middle;
+    padding-right: 2rem;
+  }
+
+  .info {
+    display: inline-block;
+    width: 49%;
+    vertical-align: middle;
+  }
+
+  .infoGroup {
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+  }
 }
