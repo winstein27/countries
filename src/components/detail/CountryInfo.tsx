@@ -87,13 +87,13 @@ const CountryInfo = ({ country }: Props) => {
           </p>
         </div>
 
-        {borderCountries.length && (
+        {borderCountries.length !== 0 && (
           <>
             <h2>Border Countries:</h2>
             <div className={styles.borderCountries}>
               {borderCountries.map((country) => (
                 <Link
-                  to={"/detail?name=" + country.officialName}
+                  to={"/detail/" + country.officialName}
                   className={styles.countryLink}
                 >
                   {country.name}

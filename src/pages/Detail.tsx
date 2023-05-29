@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useSearchParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
 
 import styles from "./Detail.module.css";
@@ -17,38 +16,34 @@ const prepareCountry = (data: ResponseCountry) => {
   country.name = data.name.common;
 
   const nativeName = data.name.nativeName;
-  country.nativeName = nativeName[Object.keys(nativeName)[0]].common;
+  country.nativeName = nativeName
+    ? nativeName[Object.keys(nativeName)[0]].common
+    : "Not informed.";
 
   country.population = data.population;
   country.region = data.region;
-  country.subRegion = data.subregion;
+  country.subRegion = data.subregion || "Not informed.";
   country.capital = data?.capital ? data.capital[0] : "Not informed.";
   country.flag = { alt: data.flags.alt, url: data.flags.png };
   country.domain = data.tld;
 
-  country.currencies = Object.values(data.currencies).reduce(
-    (prev: string[], current) => {
-      prev.push(current.name);
-      return prev;
-    },
-    [] as string[]
-  );
+  country.currencies = data.currencies
+    ? Object.values(data.currencies).reduce((prev: string[], current) => {
+        prev.push(current.name);
+        return prev;
+      }, [] as string[])
+    : ["Not informed."];
 
-  country.languages = Object.values(data.languages);
+  country.languages = data.languages
+    ? Object.values(data.languages)
+    : ["Not informed."];
   country.borderCountries = data.borders || [];
 
   return country;
 };
 
 const Detail = () => {
-  const navigate = useNavigate();
-
-  const [searchParams] = useSearchParams();
-  const name = searchParams.get("name");
-
-  useEffect(() => {
-    if (!name) navigate("/");
-  }, []);
+  const { name } = useParams();
 
   const { data, isLoading, error } = useFetch<ResponseCountry[]>({
     url: `name/${name}?fullText=true`,

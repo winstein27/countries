@@ -61,7 +61,7 @@ const CountriesList = (props: Props) => {
     : countriesList;
 
   const onClickHandler = (officialName: string) => {
-    navigate("/detail?name=" + officialName);
+    navigate("/detail/" + officialName);
   };
 
   return (
