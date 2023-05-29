@@ -15,8 +15,25 @@
   width: 100%;
 }
 
+.borderCountries {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .infoGroup {
   margin: 2.5rem 0;
+}
+
+.countryLink {
+  text-decoration: none;
+  color: inherit;
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 600px) {

@@ -1,4 +1,9 @@
+import { Link } from "react-router-dom";
+
+import useManyFetch from "../../hooks/useManyFetch";
+
 import CountryComplete from "../../types/CountryComplete";
+import ResponseCountry from "../../types/ResponseCountry";
 
 import styles from "./CountryInfo.module.css";
 
@@ -6,7 +11,43 @@ interface Props {
   country: CountryComplete;
 }
 
+interface Name {
+  name: string;
+  officialName: string;
+}
+
+const getNames = (data: ResponseCountry[][], region: string) => {
+  const names = [] as Name[];
+
+  data.forEach((responseCountries) => {
+    responseCountries.every((country) => {
+      if (country.region === region) {
+        names.push({
+          name: country.name.common,
+          officialName: country.name.official,
+        });
+        return false;
+      }
+
+      return true;
+    });
+  });
+
+  return [...new Map(names.map((name) => [name["name"], name])).values()];
+};
+
 const CountryInfo = ({ country }: Props) => {
+  const urls = country.borderCountries.map((country) => "/name/" + country);
+  const { data, isLoading, error } = useManyFetch<ResponseCountry[]>({
+    urls,
+  });
+
+  const borderCountries = getNames(data, country.region);
+
+  if (isLoading) return <h1>Loading...</h1>;
+
+  if (!isLoading && error) <h1>Something went wrong</h1>;
+
   return (
     <div className={styles.container}>
       <div className={styles.flag}>
@@ -46,10 +87,21 @@ const CountryInfo = ({ country }: Props) => {
           </p>
         </div>
 
-        <div className={styles.infoGroup}>
-          <h2>Border Countries:</h2>
-          {country.borderCountries}
-        </div>
+        {borderCountries.length && (
+          <>
+            <h2>Border Countries:</h2>
+            <div className={styles.borderCountries}>
+              {borderCountries.map((country) => (
+                <Link
+                  to={"/detail?name=" + country.officialName}
+                  className={styles.countryLink}
+                >
+                  {country.name}
+                </Link>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

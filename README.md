@@ -60,7 +60,8 @@ To see how you can add code snippets, see below:
 ### Useful resources
 
 - [Fetch with TypeScript](https://www.newline.co/@bespoyasov/how-to-use-fetch-with-typescript--a81ac257) - This helped me adding types to the project.
-- [Objects with unknown keys in TypeScript](https://www.becomebetterprogrammer.com/typescript-objects-with-unknown-keys-and-known-values/) - This help me declaring interfaces with unknown keys.
+- [Objects with unknown keys in TypeScript](https://www.becomebetterprogrammer.com/typescript-objects-with-unknown-keys-and-known-values/) - This helped me declaring interfaces with unknown keys.
+- [Removing duplicates from array of objects](https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects) - This helped me removing duplicated border countries.
 
 ## Author
 
