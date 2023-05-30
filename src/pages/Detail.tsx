@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
 
@@ -43,11 +44,18 @@ const prepareCountry = (data: ResponseCountry) => {
 };
 
 const Detail = () => {
-  const { name } = useParams();
+  const [name, setName] = useState<string | undefined>();
+  const params = useParams();
 
-  const { data, isLoading, error } = useFetch<ResponseCountry[]>({
-    url: `name/${name}?fullText=true`,
-  });
+  const { data, isLoading, error, sendRequest } = useFetch<ResponseCountry[]>();
+
+  useEffect(() => {
+    setName(params.name);
+  }, [params]);
+
+  useEffect(() => {
+    if (name) sendRequest(`name/${name}?fullText=true`);
+  }, [name]);
 
   if (isLoading) return <h2>Loading...</h2>;
 

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useFetch from "../../hooks/useFetch";
@@ -40,9 +41,12 @@ const createCountry = (data: ResponseCountry) => {
 };
 
 const CountriesList = (props: Props) => {
-  const { data, isLoading, error } = useFetch<ResponseCountry[]>({
-    url: "/all",
-  });
+  const { data, isLoading, error, sendRequest } = useFetch<ResponseCountry[]>();
+
+  useEffect(() => {
+    sendRequest("/all");
+  }, []);
+
   const navigate = useNavigate();
 
   if (isLoading) return <h2>Countries List</h2>;
