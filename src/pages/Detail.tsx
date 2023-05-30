@@ -57,10 +57,9 @@ const Detail = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.button}>
-        <MdKeyboardBackspace />
-        <Link to="/">Back</Link>
-      </div>
+      <Link to="/" className={styles.button}>
+        <MdKeyboardBackspace /> Back
+      </Link>
       <CountryInfo country={country} />
     </div>
   );

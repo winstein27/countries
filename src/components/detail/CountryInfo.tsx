@@ -91,10 +91,11 @@ const CountryInfo = ({ country }: Props) => {
           <>
             <h2>Border Countries:</h2>
             <div className={styles.borderCountries}>
-              {borderCountries.map((country) => (
+              {borderCountries.map((country, index) => (
                 <Link
                   to={"/detail/" + country.officialName}
                   className={styles.countryLink}
+                  key={index}
                 >
                   {country.name}
                 </Link>
