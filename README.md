@@ -25,11 +25,18 @@ Users should be able to:
 - Filter countries by region
 - Click on a country to see more detailed information on a separate page
 - Click through to the border countries on the detail page
-- Toggle the color scheme between light and dark mode _(optional)_
+- Toggle the color scheme between light and dark mode
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshots/01.png)
+![](./screenshots/02.png)
+![](./screenshots/03.png)
+![](./screenshots/04.png)
+![](./screenshots/05.png)
+![](./screenshots/06.png)
+![](./screenshots/07.png)
+![](./screenshots/08.png)
 
 ### Links
 
@@ -53,9 +60,43 @@ Users should be able to:
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+Using Outlet Context from React Router Dom to set the theme:
 
-To see how you can add code snippets, see below:
+```ts
+const [theme, setTheme] = useState<"light" | "dark">("light");
+
+const changeTheme = () => {
+  setTheme((prev) => (prev === "light" ? "dark" : "light"));
+};
+
+...
+
+<Outlet context={{ theme }} />;
+
+...
+
+type ThemeContext = {
+  theme: "dark" | "light";
+};
+
+const useTheme = () => {
+  return useOutletContext<ThemeContext>();
+};
+```
+
+Fetching many at once, to avoid awaiting for one answer before doing another request:
+
+```ts
+await Promise.all(
+  urls.map(async (url) => {
+    const response = await client.get(url);
+    setData((prevData) => {
+      prevData.push(response.data as ResponseType);
+      return prevData;
+    });
+  })
+);
+```
 
 ### Useful resources
 
