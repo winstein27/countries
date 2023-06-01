@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { MdSearch } from "react-icons/md";
 
+import useTheme from "../hooks/useTheme";
+
 import styles from "./Countries.module.css";
 
 import CountriesList from "../components/countries/CountriesList";
@@ -9,9 +11,11 @@ const Countries = () => {
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("");
 
+  const { theme } = useTheme();
+
   return (
     <>
-      <div className={styles.filters}>
+      <div className={`${styles.filters} ${styles[theme]}`}>
         <MdSearch />
         <input
           type="text"

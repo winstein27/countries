@@ -9,6 +9,10 @@
   margin-bottom: 2rem;
 }
 
+.dark {
+  background-color: hsl(209, 23%, 22%);
+}
+
 .flag {
   width: 100%;
   max-height: 220px;

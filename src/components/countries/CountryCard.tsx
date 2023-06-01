@@ -1,3 +1,5 @@
+import useTheme from "../../hooks/useTheme";
+
 import CountryBasic from "../../types/CountryBasic";
 
 import styles from "./CountryCard.module.css";
@@ -8,8 +10,13 @@ interface Props {
 }
 
 const CountryCard = ({ country, onClick }: Props) => {
+  const { theme } = useTheme();
+
   return (
-    <div className={styles.card} onClick={() => onClick(country.officialName)}>
+    <div
+      className={`${styles.card} ${styles[theme]}`}
+      onClick={() => onClick(country.officialName)}
+    >
       <img
         src={country.flag.url}
         alt={country.flag.alt}

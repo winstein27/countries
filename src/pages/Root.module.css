@@ -1,4 +1,10 @@
+.dark {
+  background: hsl(207, 26%, 17%);
+  color: hsl(0, 0%, 100%);
+}
+
 .main {
   max-width: 1440px;
   margin: auto;
+  padding-top: 2rem;
 }

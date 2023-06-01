@@ -5,6 +5,7 @@ import { MdKeyboardBackspace } from "react-icons/md";
 import styles from "./Detail.module.css";
 
 import useFetch from "../hooks/useFetch";
+import useTheme from "../hooks/useTheme";
 
 import CountryComplete from "../types/CountryComplete";
 import ResponseCountry from "../types/ResponseCountry";
@@ -47,6 +48,8 @@ const Detail = () => {
   const [name, setName] = useState<string | undefined>();
   const params = useParams();
 
+  const { theme } = useTheme();
+
   const { data, isLoading, error, sendRequest } = useFetch<ResponseCountry[]>();
 
   useEffect(() => {
@@ -64,7 +67,7 @@ const Detail = () => {
   const country = prepareCountry(data[0]);
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${styles[theme]}`}>
       <Link to="/" className={styles.button}>
         <MdKeyboardBackspace /> Back
       </Link>
